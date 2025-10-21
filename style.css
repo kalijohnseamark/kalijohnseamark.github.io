@@ -117,6 +117,7 @@ footer {
   color: #e6d3a3;
 }
 
+/* Responsive layout adjustments */
 @media (min-width: 700px) {
   .about {
     flex-direction: row;
@@ -126,4 +127,30 @@ footer {
   .bio {
     max-width: 400px;
   }
-} 
+}
+
+/* --- Contact page enhancements --- */
+.contact {
+  color: #f2f2f2; /* bright readable text */
+  font-size: 1.05rem; /* slightly larger for a softer look */
+  line-height: 1.8; /* more breathing room */
+}
+
+.contact p {
+  color: #e2e0da; /* soft cream tone to match headers */
+}
+
+.contact a {
+  color: #d8c99b; /* warm gold tone for links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact a:hover {
+  color: #e6d3a3; /* lighter gold on hover */
+}
+
+.contact .icon {
+  color: #e6d3a3; /* make icons pop slightly */
+  margin-right: 8px;
+}
