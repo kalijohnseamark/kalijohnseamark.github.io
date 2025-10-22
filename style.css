@@ -117,7 +117,6 @@ footer {
   color: #e6d3a3;
 }
 
-/* Responsive layout adjustments */
 @media (min-width: 700px) {
   .about {
     flex-direction: row;
@@ -129,29 +128,34 @@ footer {
   }
 }
 
-/* --- Contact page enhancements --- */
+/* --- CONTACT PAGE FIX --- */
+main.contact,
 .contact {
-  color: #f2f2f2;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  color: #f2f2f2 !important;
 }
 
-/* Make ALL text on the contact page the same bright tone */
-.contact p,
-.contact a,
-.contact strong {
-  color: #f2f2f2;
+main.contact p,
+main.contact strong {
+  color: #f2f2f2 !important;
+}
+
+/* 🔥 Stronger selector and forced override */
+main.contact a,
+.contact a {
+  color: #f2f2f2 !important;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Gentle hover effect for links */
+/* Hover effect: subtle warm highlight */
+main.contact a:hover,
 .contact a:hover {
-  color: #ffffff;
+  color: #fff6d5 !important;
   text-decoration: underline;
 }
 
-/* Optional icon tone if you’re using emoji or icons */
+/* Optional icon color */
 .contact .icon {
-  color: #f2f2f2;
+  color: #f2f2f2 !important;
   margin-right: 8px;
 }
