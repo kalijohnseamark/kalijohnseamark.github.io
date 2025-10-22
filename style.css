@@ -136,28 +136,22 @@ footer {
   line-height: 1.8;
 }
 
-/* Brighter paragraph text for better contrast */
-.contact p {
-  color: #f1ede2; /* lighter cream tone */
-}
-
-/* Brighter default link color */
-.contact a {
-  color: #e6d3a3; /* now matches hover tone for readability */
+/* Make ALL text on the contact page the same bright tone */
+.contact p,
+.contact a,
+.contact strong {
+  color: #f2f2f2;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-/* Hover stays just a touch lighter for feedback */
+/* Gentle hover effect for links */
 .contact a:hover {
-  color: #fff2c6;
+  color: #ffffff;
+  text-decoration: underline;
 }
 
+/* Optional icon tone if you’re using emoji or icons */
 .contact .icon {
-  color: #e6d3a3;
-  margin-right: 8px;
-}
-.contact .icon {
-  color: #e6d3a3; /* make icons pop slightly */
+  color: #f2f2f2;
   margin-right: 8px;
 }
