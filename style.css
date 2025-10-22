@@ -131,25 +131,32 @@ footer {
 
 /* --- Contact page enhancements --- */
 .contact {
-  color: #f2f2f2; /* bright readable text */
-  font-size: 1.05rem; /* slightly larger for a softer look */
-  line-height: 1.8; /* more breathing room */
+  color: #f2f2f2;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
+/* Brighter paragraph text for better contrast */
 .contact p {
-  color: #e2e0da; /* soft cream tone to match headers */
+  color: #f1ede2; /* lighter cream tone */
 }
 
+/* Brighter default link color */
 .contact a {
-  color: #d8c99b; /* warm gold tone for links */
+  color: #e6d3a3; /* now matches hover tone for readability */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
+/* Hover stays just a touch lighter for feedback */
 .contact a:hover {
-  color: #e6d3a3; /* lighter gold on hover */
+  color: #fff2c6;
 }
 
+.contact .icon {
+  color: #e6d3a3;
+  margin-right: 8px;
+}
 .contact .icon {
   color: #e6d3a3; /* make icons pop slightly */
   margin-right: 8px;
