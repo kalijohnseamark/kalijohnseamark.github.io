@@ -1,46 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Works | Kali John Seamark</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Works | Kali John Seamark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --cream: #f5f0e8;
+    --cream-warm: #ede6d6;
+    --cream-deep: #d9cfbc;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --gold-muted: #8a6e3e;
+    --text-body: #3a342c;
+    --text-muted: #6b5f50;
+    --text-faint: #9e9080;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background-color: var(--cream);
+    color: var(--text-body);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+ 
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+ 
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245,240,232,0.97);
+    border-bottom: 1px solid var(--cream-deep);
+    backdrop-filter: blur(4px);
+  }
+ 
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+ 
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+ 
+  .nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+ 
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 100%;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.3s ease;
+  }
+ 
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--gold-muted); }
+ 
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 11rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .page-header-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+ 
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.3s forwards;
+  }
+ 
+  .page-header h1 em { font-style: italic; color: var(--gold-muted); }
+ 
+  /* ── WORKS ── */
+  .works-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem 8rem;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* Featured novel */
+  .work-featured {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+    padding: 4rem 0;
+    border-top: 1px solid var(--cream-deep);
+    margin-bottom: 1rem;
+  }
+ 
+  .book-cover {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+ 
+  .book-cover-inner {
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+  }
+ 
+  .book-cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+ 
+  .book-cover-author {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+ 
+  /* Gold spine accent */
+  .book-cover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--gold-muted));
+  }
+ 
+  /* Decorative texture stripes in cover bg */
+  .book-cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(184,150,90,0.04) 40px,
+        rgba(184,150,90,0.04) 41px
+      );
+  }
+ 
+  .work-meta { padding-top: 0.5rem; }
+ 
+  .work-type-badge {
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--ink);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+ 
+  .work-status-badge {
+    display: inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    border: 1px solid var(--cream-deep);
+    padding: 0.3rem 0.9rem;
+    margin-left: 0.5rem;
+  }
+ 
+  .work-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+ 
+  .work-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 2rem;
+  }
+ 
+  .work-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+  }
+ 
+  .work-desc {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text-body);
+    margin-bottom: 1.4rem;
+  }
+ 
+  .work-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+ 
+  .work-theme {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.63rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--cream-deep);
+    padding: 0.3rem 0.8rem;
+  }
+ 
+  /* Shorter works list */
+  .works-list-heading {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    padding-top: 4rem;
+  }
+ 
+  .work-item {
+    padding: 2.2rem 0;
+    border-top: 1px solid var(--cream-deep);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+  }
+ 
+  .work-item:last-child { border-bottom: 1px solid var(--cream-deep); }
+ 
+  .work-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+ 
+  .work-item-desc {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+ 
+  .work-item-status {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    white-space: nowrap;
+    padding-top: 0.3rem;
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--cream-deep);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .footer-copy {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--text-faint);
+  }
+ 
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+ 
+  .footer-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  .footer-links a:hover { color: var(--gold-muted); }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ 
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+  @media (max-width: 800px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .page-header { padding: 9rem 1.5rem 3rem; }
+    .works-section { padding: 0 1.5rem 5rem; }
+    .work-featured { grid-template-columns: 1fr; gap: 2.5rem; }
+    .book-cover { max-width: 220px; }
+    .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Kali John Seamark</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="works.html" class="active">Works</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="works">
-      <h2>Works</h2>
-      <p>Explore Kali John's fiction, both published and forthcoming.</p>
-
-      <div class="work-entry">
-        <h3><em>[Debut Novel]</em> (in progress)</h3>
-        <p>An epic fantasy exploring culture, spirituality, and pursuit of the objective truth of the world.</p>
+ 
+<nav>
+  <a href="index.html" class="nav-name">Kali John Seamark</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html" class="active">Works</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+ 
+<div class="page-header">
+  <p class="page-header-label">Fiction</p>
+  <h1>The<br><em>Works</em></h1>
+</div>
+ 
+<div class="works-section">
+ 
+  <!-- Featured: Novel -->
+  <div class="work-featured">
+    <div class="reveal">
+      <div class="book-cover">
+        <div class="book-cover-bg"></div>
+        <div class="book-cover-inner">
+          <p class="book-cover-title">Debut Novel</p>
+          <p class="book-cover-author">Kali John Seamark</p>
+        </div>
       </div>
-
-      <div class="work-entry">
-        <h3>"[Short Story Title]"</h3>
-        <p>Something will be here. Stay tuned.</p>
+    </div>
+ 
+    <div class="work-meta reveal" style="transition-delay:0.15s">
+      <div>
+        <span class="work-type-badge">Novel</span>
+        <span class="work-status-badge">In Progress</span>
       </div>
-
-      <div class="work-entry">
-        <h3>"[Upcoming Story or Piece]"</h3>
-        <p>Forthcoming in [Publication Name]. Something will be here. Stay tuned. </p>
+      <h2 class="work-title">Debut Novel<br><span style="font-size:0.7em; color:var(--gold-muted);">[title forthcoming]</span></h2>
+      <p class="work-subtitle">Epic Fantasy</p>
+      <div class="work-divider"></div>
+      <p class="work-desc">
+        An epic fantasy following dual protagonists across three unique cultures set in an expansive, immersive world. Each civilisation carries its own theology, history, and way of knowing — and the collision between them raises questions that cannot be answered easily.
+      </p>
+      <p class="work-desc">
+        At its heart, the novel is a search for objective truth in a world where every culture believes it already has the answer.
+      </p>
+      <div class="work-themes">
+        <span class="work-theme">Culture &amp; Civilisation</span>
+        <span class="work-theme">Spirituality</span>
+        <span class="work-theme">Truth &amp; Belief</span>
+        <span class="work-theme">Dual Protagonists</span>
+        <span class="work-theme">World-Building</span>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Kali John Seamark. All rights reserved.</p>
-  </footer>
+    </div>
+  </div>
+ 
+  <!-- Short fiction list -->
+  <p class="works-list-heading reveal">Short Fiction &amp; Essays</p>
+ 
+  <div class="work-item reveal" style="transition-delay:0.05s">
+    <div>
+      <p class="work-item-title">[Short Story Title]</p>
+      <p class="work-item-desc">Description coming soon. Stay tuned.</p>
+    </div>
+    <span class="work-item-status">Coming Soon</span>
+  </div>
+ 
+  <div class="work-item reveal" style="transition-delay:0.12s">
+    <div>
+      <p class="work-item-title">[Upcoming Piece]</p>
+      <p class="work-item-desc">Forthcoming in [Publication Name].</p>
+    </div>
+    <span class="work-item-status">Forthcoming</span>
+  </div>
+ 
+</div>
+ 
+<footer>
+  <p class="footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+ 
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
