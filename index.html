@@ -1,34 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kali John Seamark | Author</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kali John Seamark | Author</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --ink-soft: #2e2a26;
+    --cream: #f5f0e8;
+    --cream-warm: #ede6d6;
+    --cream-deep: #d9cfbc;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --gold-muted: #8a6e3e;
+    --text-body: #3a342c;
+    --text-muted: #6b5f50;
+    --text-faint: #9e9080;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background-color: var(--cream);
+    color: var(--text-body);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.75;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+ 
+  /* Subtle paper grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.97) 60%, rgba(245,240,232,0));
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+ 
+  nav.scrolled {
+    border-bottom-color: var(--cream-deep);
+    background: rgba(245,240,232,0.97);
+  }
+ 
+  .nav-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+ 
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+ 
+  .nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+ 
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 100%;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.3s ease;
+  }
+ 
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--gold-muted); }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 3rem 0 3rem;
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  .hero-ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+ 
+  .hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(4.5rem, 11vw, 9rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+ 
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-muted);
+  }
+ 
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 2.5rem 0;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+ 
+  .hero-sub {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+ 
+  .hero-tagline {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-body);
+    max-width: 520px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.75s forwards;
+  }
+ 
+  .hero-cta {
+    margin-top: 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--gold);
+    transition: background 0.25s, color 0.25s;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.9s forwards;
+  }
+ 
+  .hero-cta:hover {
+    background: var(--gold);
+    color: var(--cream);
+  }
+ 
+  .hero-cta-arrow {
+    font-size: 1rem;
+    transition: transform 0.25s;
+  }
+ 
+  .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+ 
+  /* Decorative large background letter */
+  .hero-bg-letter {
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-52%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18rem, 38vw, 44rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-warm);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    animation: fadeIn 1.4s ease 0.5s forwards;
+  }
+ 
+  /* ── SECTION: ABOUT TEASER ── */
+  .section-teaser {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    border-top: 1px solid var(--cream-deep);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+ 
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+ 
+  .section-heading em { font-style: italic; color: var(--gold-muted); }
+ 
+  .section-body {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin-bottom: 2rem;
+  }
+ 
+  .text-link {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-muted);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+ 
+  .text-link:hover { color: var(--ink); border-color: var(--ink); }
+ 
+  /* Works teaser cards */
+  .teaser-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+ 
+  .teaser-card {
+    padding: 1.6rem 1.8rem;
+    border: 1px solid var(--cream-deep);
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.35);
+    transition: border-color 0.25s, background 0.25s;
+  }
+ 
+  .teaser-card:hover {
+    border-color: var(--gold);
+    border-left-color: var(--gold-muted);
+    background: rgba(255,255,255,0.65);
+  }
+ 
+  .teaser-card-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.63rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+ 
+  .teaser-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+ 
+  .teaser-card-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+ 
+  /* ── QUOTE BAND ── */
+  .quote-band {
+    background: var(--ink);
+    padding: 6rem 3rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+ 
+  .quote-band::before {
+    content: '\201C';
+    position: absolute;
+    top: -1.5rem;
+    left: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20rem;
+    color: rgba(184,150,90,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+ 
+  .quote-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+ 
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+ 
+  .quote-attr {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--cream-deep);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .footer-copy {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--text-faint);
+  }
+ 
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+ 
+  .footer-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  .footer-links a:hover { color: var(--gold-muted); }
+ 
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+ 
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+ 
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+ 
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { padding: 0 1.5rem; }
+    .hero-bg-letter { display: none; }
+    .section-teaser { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+  }
+</style>
 </head>
 <body>
-<header>
-  <h1>Kali John Seamark</h1>
-  <p class="tagline">Emerging author of literary fiction and epic fantasy</p>
-  <p style="font-style: italic; color: #888;">Website in progress. Full portfolio coming soon.</p>
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="works.html">Works</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-  <main>
-    <section class="intro">
-      <p>Kali John writes stories that draw from the grit and complexity of working-class experience, weaving realism and myth into contemporary literature.</p>
-      <p>Welcome to the official author site — explore Kali John's works, learn more about current projects, and stay updated on future publications.</p>
-      <a href="works.html" class="button">Explore Works</a>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Kali John Seamark. All rights reserved.</p>
-  </footer>
+ 
+<nav id="mainNav">
+  <a href="index.html" class="nav-name">Kali John Seamark</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+ 
+<main>
+  <section class="hero">
+    <div class="hero-bg-letter" aria-hidden="true">K</div>
+    <p class="hero-ornament">Author &nbsp;&middot;&nbsp; Fiction &nbsp;&middot;&nbsp; Fantasy</p>
+    <h1 class="hero-title">Kali<br><em>John</em><br>Seamark</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Literary Fiction &amp; Epic Fantasy</p>
+    <p class="hero-tagline">Stories drawn from the grit of working-class life, woven through with myth, spirituality, and the search for truth.</p>
+    <a href="works.html" class="hero-cta">Explore Works <span class="hero-cta-arrow">→</span></a>
+  </section>
+ 
+  <section class="section-teaser">
+    <div class="reveal">
+      <p class="section-label">The Author</p>
+      <h2 class="section-heading">Grit, myth,<br>and the <em>search for truth</em></h2>
+      <p class="section-body">
+        Kali John Seamark works in construction and writes fiction that refuses to stay in one lane — drawing from working-class realism, epic world-building, and the deeper questions of what we believe and why.
+      </p>
+      <a href="about.html" class="text-link">Read more about Kali John →</a>
+    </div>
+    <div class="teaser-cards reveal" style="transition-delay: 0.15s;">
+      <div class="teaser-card">
+        <p class="teaser-card-label">Novel &mdash; In Progress</p>
+        <p class="teaser-card-title">Debut Novel</p>
+        <p class="teaser-card-desc">An epic fantasy exploring culture, spirituality, and the pursuit of objective truth across three unique civilisations.</p>
+      </div>
+      <div class="teaser-card">
+        <p class="teaser-card-label">Short Fiction</p>
+        <p class="teaser-card-title">Coming Soon</p>
+        <p class="teaser-card-desc">Short stories and pieces in progress. Stay tuned for forthcoming publications.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <div class="quote-band">
+    <div class="quote-inner">
+      <p class="quote-text">"Stories drawn from the grit and complexity of working-class experience, weaving realism and myth into contemporary literature."</p>
+      <p class="quote-attr">Kali John Seamark</p>
+    </div>
+  </div>
+</main>
+ 
+<footer>
+  <p class="footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+ 
+<script>
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+ 
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
