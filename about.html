@@ -246,39 +246,227 @@
     background: rgba(255,255,255,0.5);
   }
  
-  /* ── FOOTER ── */
-  footer {
+  /* ── RECOGNITION ── */
+  .recognition-section {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--cream-deep);
+    padding: 0 3rem 6rem;
     position: relative;
     z-index: 1;
   }
  
-  .footer-copy {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    color: var(--text-faint);
+  .recognition-inner {
+    border-top: 1px solid var(--cream-deep);
+    padding-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
   }
  
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
- 
-  .footer-links a {
+  .recognition-label {
     font-family: 'Raleway', sans-serif;
     font-size: 0.68rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--text-faint);
+    color: var(--gold-muted);
+    margin-bottom: 2rem;
+  }
+ 
+  .recognition-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+ 
+  .recognition-heading em { font-style: italic; color: var(--gold-muted); }
+ 
+  .recognition-entry {
+    padding: 1.6rem 1.8rem;
+    border: 1px solid var(--cream-deep);
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.35);
+    margin-bottom: 1.2rem;
+  }
+ 
+  .recognition-entry-year {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-bottom: 0.3rem;
+  }
+ 
+  .recognition-entry-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+ 
+  .recognition-entry-org {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+ 
+  .currently-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+ 
+  .currently-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.65;
+  }
+ 
+  .currently-item::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.56rem;
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 3rem 3rem;
+  }
+ 
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+ 
+  .footer-col-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(184,150,90,0.7);
+    margin-bottom: 1.2rem;
+  }
+ 
+  .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+ 
+  .footer-nav-links a {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: rgba(232,223,200,0.6);
     text-decoration: none;
     transition: color 0.2s;
   }
  
-  .footer-links a:hover { color: var(--gold-muted); }
+  .footer-nav-links a:hover { color: rgba(232,223,200,1); }
+ 
+  .footer-social-links { display: flex; flex-direction: column; gap: 0.6rem; }
+ 
+  .footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: rgba(232,223,200,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  .footer-social-link:hover { color: rgba(232,223,200,1); }
+ 
+  .newsletter-form { display: flex; flex-direction: column; gap: 0.8rem; }
+ 
+  .newsletter-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(232,223,200,0.5);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+ 
+  .newsletter-input-row { display: flex; }
+ 
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(184,150,90,0.25);
+    border-right: none;
+    padding: 0.7rem 1rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    color: #e8dfc8;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+  }
+ 
+  .newsletter-input::placeholder { color: rgba(232,223,200,0.3); font-style: italic; }
+  .newsletter-input:focus { border-color: rgba(184,150,90,0.6); }
+ 
+  .newsletter-btn {
+    background: var(--gold-muted);
+    border: 1px solid var(--gold-muted);
+    padding: 0.7rem 1.2rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f5f0e8;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+    border-radius: 0;
+  }
+ 
+  .newsletter-btn:hover { background: var(--gold); border-color: var(--gold); }
+ 
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  .footer-copy {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(232,223,200,0.3);
+  }
+ 
+  .footer-copy-links { display: flex; gap: 1.5rem; list-style: none; }
+ 
+  .footer-copy-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(232,223,200,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+ 
+  .footer-copy-links a:hover { color: rgba(232,223,200,0.7); }
  
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(22px); }
@@ -299,7 +487,10 @@
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 1.5rem 5rem; }
     .portrait-col { position: static; }
     .portrait-frame { max-width: 280px; }
-    footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+    .recognition-section { padding: 0 1.5rem 4rem; }
+    .recognition-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   }
 </style>
 </head>
@@ -346,7 +537,7 @@
     </p>
  
     <p class="bio-body reveal" style="transition-delay:0.26s">
-      When not on a job site or at his desk, Kali trains Brazilian jiu-jitsu.
+      When not on a job site or at his desk, Kali can be found on the mats training BJJ or lifting weights from his makeshift home gym.
     </p>
  
     <div class="bio-facts reveal" style="transition-delay:0.34s">
@@ -359,14 +550,77 @@
   </div>
 </div>
  
+<!-- RECOGNITION & CURRENT WORK -->
+<div class="recognition-section">
+  <div class="recognition-inner">
+    <div class="reveal">
+      <p class="recognition-label">Recognition</p>
+      <h2 class="recognition-heading">Vetted by<br><em>Professionals</em></h2>
+      <div class="recognition-entry">
+        <p class="recognition-entry-year">2025</p>
+        <p class="recognition-entry-title">Finalist — Summer Short Story Fiction Potluck</p>
+        <p class="recognition-entry-org">Writers Workout</p>
+      </div>
+      <p style="font-size:0.92rem; color:var(--text-faint); font-style:italic; margin-top:1.2rem; line-height:1.7;">
+        Further publications and recognition in progress. This record will grow.
+      </p>
+    </div>
+ 
+    <div class="reveal" style="transition-delay:0.15s">
+      <p class="recognition-label">Currently</p>
+      <h2 class="recognition-heading">Active &<br><em>In Motion</em></h2>
+      <ul class="currently-list">
+        <li class="currently-item">Completing debut epic fantasy novel set in the world of Estara</li>
+        <li class="currently-item">Seeking literary representation</li>
+        <li class="currently-item">Active in short fiction submissions</li>
+        <li class="currently-item">A purple belt student and coach in BJJ — discipline on and off the page</li>
+      </ul>
+    </div>
+  </div>
+</div>
+ 
 <footer>
-  <p class="footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
-  <ul class="footer-links">
-    <li><a href="about.html">About</a></li>
-    <li><a href="works.html">Works</a></li>
-    <li><a href="world.html">The World</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <p class="footer-col-label">Navigate</p>
+        <ul class="footer-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="works.html">Works</a></li>
+          <li><a href="world.html">The World</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-label">Follow</p>
+        <div class="footer-social-links">
+          <a href="https://instagram.com/kali_john98" target="_blank" rel="noopener" class="footer-social-link">
+            <svg class="footer-social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-label">Stay Updated</p>
+        <div class="newsletter-form">
+          <p class="newsletter-desc">New publications, releases, and dispatches from the world of Estara.</p>
+          <div class="newsletter-input-row">
+            <input type="email" class="newsletter-input" placeholder="your@email.com" aria-label="Email address">
+            <button class="newsletter-btn" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
+      <ul class="footer-copy-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="works.html">Works</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
  
 <script>
