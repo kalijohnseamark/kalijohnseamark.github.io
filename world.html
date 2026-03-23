@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World | Kali John Seamark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #0d0b09;
+    --deep: #14110d;
+    --surface: #1c1812;
+    --surface-raised: #231e16;
+    --border: rgba(184,150,90,0.18);
+    --border-bright: rgba(184,150,90,0.4);
+    --gold: #c9a46a;
+    --gold-dim: #8a6e3e;
+    --ember: #c4622a;
+    --ember-dim: #7a3a18;
+    --cream: #e8dfc8;
+    --cream-dim: #a89878;
+    --steel: #8aa4b4;
+    --text-body: #a89878;
+    --text-muted: #6a5e48;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--void);
+    color: var(--text-body);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.3rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13,11,9,0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 100%;
+    height: 1px;
+    background: var(--gold);
+    transition: right 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-links a.active { color: var(--gold-dim); }
+ 
+  /* HERO */
+  .world-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-spiral {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-spiral svg {
+    width: min(90vw, 700px);
+    height: min(90vw, 700px);
+    opacity: 0.07;
+    animation: spiralRotate 90s linear infinite;
+  }
+  @keyframes spiralRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .hero-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .hero-eyebrow span { display: inline-block; width: 30px; height: 1px; background: var(--gold-dim); vertical-align: middle; margin: 0 1rem; }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 300;
+    line-height: 0.88;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); display: block; }
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-body);
+    max-width: 480px;
+    margin-top: 2.5rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    z-index: 1;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+  }
+  .hero-scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+ 
+  /* SECTIONS */
+  .lore-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+  .section-glyph { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 3rem; }
+  .section-glyph-symbol { width: 28px; height: 28px; flex-shrink: 0; }
+  .section-glyph-label { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dim); }
+  .section-glyph-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border-bright), transparent); }
+  .lore-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; line-height: 1.05; color: var(--cream); margin-bottom: 2rem; }
+  .lore-heading em { font-style: italic; color: var(--gold); }
+  .scripture { border-left: 2px solid var(--gold-dim); padding: 1.2rem 0 1.2rem 2rem; margin: 2.5rem 0; font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-style: italic; font-weight: 300; color: var(--cream-dim); line-height: 1.6; }
+  .scripture-attr { display: block; font-family: 'Raleway', sans-serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-top: 0.8rem; font-style: normal; }
+  .lore-body { font-size: 1.05rem; color: var(--text-body); line-height: 1.9; margin-bottom: 1.5rem; }
+  .lore-body strong { color: var(--cream-dim); font-weight: 400; }
+ 
+  /* SOURCE */
+  .source-visual { display: flex; align-items: center; gap: 3rem; margin: 3rem 0; padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); }
+  .source-spiral-wrap { flex-shrink: 0; width: 100px; height: 100px; }
+  .source-spiral-wrap svg { width: 100%; height: 100%; animation: spiralRotate 20s linear infinite; }
+  .source-term { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--gold); margin-bottom: 0.3rem; }
+  .source-def { font-size: 0.95rem; color: var(--text-body); line-height: 1.75; }
+ 
+  /* THEOLOGY */
+  .cosmo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 3rem 0; }
+  .cosmo-cell { background: var(--surface); padding: 2rem 2.2rem; border: 1px solid var(--border); transition: background 0.3s; position: relative; }
+  .cosmo-cell:hover { background: var(--surface-raised); }
+  .cosmo-cell::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold-dim); opacity: 0; transition: opacity 0.3s; }
+  .cosmo-cell:hover::before { opacity: 1; }
+  .cosmo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-style: italic; color: var(--gold); margin-bottom: 0.25rem; }
+  .cosmo-role { font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.7rem; }
+  .cosmo-desc { font-size: 0.92rem; color: var(--text-body); line-height: 1.7; }
+ 
+  /* DEVA */
+  .deva-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1px; margin: 3rem 0; border: 1px solid var(--border); }
+  .deva-card { background: var(--surface); padding: 1.4rem 1.6rem; transition: background 0.25s; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .deva-card:hover { background: var(--surface-raised); }
+  .deva-badge { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .deva-card.major .deva-badge { color: var(--gold); }
+  .deva-card.minor .deva-badge { color: var(--text-muted); }
+  .deva-name { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--cream-dim); margin-bottom: 0.3rem; }
+  .deva-title { font-size: 0.85rem; font-style: italic; color: var(--text-muted); line-height: 1.55; }
+ 
+  /* LANDS */
+  .lands-list { display: flex; flex-direction: column; gap: 1px; margin: 3rem 0; }
+  .land-item { display: grid; grid-template-columns: 195px 1fr; border: 1px solid var(--border); margin-bottom: 1px; overflow: hidden; }
+  .land-name-col { background: var(--surface); padding: 2rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+  .land-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; font-weight: 300; color: var(--gold); margin-bottom: 0.2rem; }
+  .land-alt { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+  .land-body-col { background: var(--deep); padding: 2rem 2.4rem; }
+  .land-desc { font-size: 0.98rem; color: var(--text-body); line-height: 1.78; }
+ 
+  /* COLLEGE */
+  .college-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 3rem 0; border: 1px solid var(--border); }
+  .college-cell { background: var(--surface); padding: 1.8rem 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.25s; }
+  .college-cell:hover { background: var(--surface-raised); }
+  .college-cell-label { font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.5rem; }
+  .college-cell-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--cream-dim); margin-bottom: 0.4rem; }
+  .college-cell-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+  .metal-strip { display: flex; gap: 2px; margin: 2.5rem 0; flex-wrap: wrap; }
+  .metal-pip { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.35rem 0.75rem; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface); white-space: nowrap; }
+  .metal-pip.gold-pip { color: var(--gold); border-color: var(--gold-dim); }
+  .metal-pip.silver-pip { color: #c0c8d0; border-color: #5a6872; }
+  .metal-pip.bronze-pip { color: #c8a060; border-color: #6a5030; }
+ 
+  /* BEASTS */
+  .beasts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1px; margin: 3rem 0; border: 1px solid var(--border); }
+  .beast-card { background: var(--surface); padding: 1.5rem 1.8rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.25s; }
+  .beast-card:hover { background: var(--surface-raised); }
+  .beast-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--cream-dim); margin-bottom: 0.25rem; }
+  .beast-origin { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember-dim); margin-bottom: 0.55rem; }
+  .beast-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+ 
+  /* PROPHECY */
+  .prophecy-band { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 3rem; text-align: center; position: relative; overflow: hidden; z-index: 1; }
+  .prophecy-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(196,98,42,0.05) 0%, transparent 70%); pointer-events: none; }
+  .prophecy-inner { max-width: 720px; margin: 0 auto; }
+  .prophecy-label { font-family: 'Raleway', sans-serif; font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--ember-dim); margin-bottom: 2rem; }
+  .prophecy-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.55; margin-bottom: 2rem; }
+  .prophecy-text em { color: var(--ember); font-style: normal; }
+  .prophecy-source { font-family: 'Raleway', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted); }
+ 
+  /* FOOTER */
+  footer { max-width: 960px; margin: 0 auto; padding: 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+  .footer-copy { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold-dim); }
+ 
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+  @media (max-width: 800px) {
+    nav { padding: 1.1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .lore-section { padding: 4rem 1.5rem; }
+    .cosmo-grid, .college-features { grid-template-columns: 1fr; }
+    .land-item { grid-template-columns: 1fr; }
+    .land-name-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .source-visual { flex-direction: column; text-align: center; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+ 
+<nav>
+  <a href="index.html" class="nav-name">Kali John Seamark</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="world.html" class="active">The World</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+ 
+<section class="world-hero">
+  <div class="hero-spiral" aria-hidden="true">
+    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#c9a46a" stroke-width="0.8">
+        <circle cx="300" cy="300" r="20"/><circle cx="300" cy="300" r="45"/>
+        <circle cx="300" cy="300" r="75"/><circle cx="300" cy="300" r="110"/>
+        <circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="195"/>
+        <circle cx="300" cy="300" r="245"/><circle cx="300" cy="300" r="280"/>
+        <line x1="300" y1="20" x2="300" y2="580"/>
+        <line x1="20" y1="300" x2="580" y2="300"/>
+        <line x1="92" y1="92" x2="508" y2="508"/>
+        <line x1="508" y1="92" x2="92" y2="508"/>
+        <line x1="156" y1="44" x2="444" y2="556"/>
+        <line x1="444" y1="44" x2="156" y2="556"/>
+        <line x1="44" y1="156" x2="556" y2="444"/>
+        <line x1="44" y1="444" x2="556" y2="156"/>
+        <polygon points="300,260 318,289 313,322 287,322 282,289" stroke-width="1.2"/>
+      </g>
+    </svg>
+  </div>
+  <p class="hero-eyebrow"><span></span>The continent of<span></span></p>
+  <h1 class="hero-title">Estara<em>Awaits</em></h1>
+  <p class="hero-subtitle">Four nations. Ancient powers. A world that knows far less about itself than it believes.</p>
+  <div class="hero-scroll-hint">Descend</div>
+</section>
+ 
+<!-- THE SOURCE -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="6" stroke="#8a6e3e" stroke-width="0.8"/>
+      <circle cx="14" cy="14" r="11" stroke="#8a6e3e" stroke-width="0.5"/>
+      <line x1="14" y1="3" x2="14" y2="25" stroke="#8a6e3e" stroke-width="0.5"/>
+      <line x1="3" y1="14" x2="25" y2="14" stroke="#8a6e3e" stroke-width="0.5"/>
+    </svg>
+    <span class="section-glyph-label">The Foundation</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">The <em>Source</em></h2>
+  <p class="lore-body reveal" style="transition-delay:0.1s">All living things are connected through the Source. It flows through the world in a constant spiral — through people, through animals, through the oldest trees and the youngest shoots. Most never know it is there. A rare few learn to see it. Fewer still learn what seeing it truly means.</p>
+  <div class="source-visual reveal" style="transition-delay:0.18s">
+    <div class="source-spiral-wrap" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none">
+        <circle cx="60" cy="60" r="8" stroke="#c9a46a" stroke-width="1"/>
+        <circle cx="60" cy="60" r="18" stroke="#c9a46a" stroke-width="0.7"/>
+        <circle cx="60" cy="60" r="30" stroke="#c9a46a" stroke-width="0.5"/>
+        <circle cx="60" cy="60" r="44" stroke="#8a6e3e" stroke-width="0.4"/>
+        <circle cx="60" cy="60" r="56" stroke="#8a6e3e" stroke-width="0.3"/>
+        <line x1="60" y1="4" x2="60" y2="116" stroke="#8a6e3e" stroke-width="0.4"/>
+        <line x1="4" y1="60" x2="116" y2="60" stroke="#8a6e3e" stroke-width="0.4"/>
+        <line x1="18" y1="18" x2="102" y2="102" stroke="#8a6e3e" stroke-width="0.3"/>
+        <line x1="102" y1="18" x2="18" y2="102" stroke="#8a6e3e" stroke-width="0.3"/>
+      </svg>
+    </div>
+    <div>
+      <p class="source-term">The Sharin</p>
+      <p class="source-def">The inner pathway through which the Source moves in a person. Those who find stillness within themselves begin to sense it. Those who master it can do things that have no other name but impossible.</p>
+    </div>
+  </div>
+  <div class="scripture reveal" style="transition-delay:0.25s">
+    The Source will not bend to your will until you have mastery over yourself.
+    <span class="scripture-attr">— The Soothsayers of the Wood</span>
+  </div>
+</section>
+ 
+<!-- THEOLOGY -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <polygon points="14,4 24,22 4,22" stroke="#8a6e3e" stroke-width="0.8" fill="none"/>
+      <line x1="14" y1="10" x2="14" y2="22" stroke="#8a6e3e" stroke-width="0.5"/>
+      <circle cx="14" cy="8" r="1.5" fill="#8a6e3e"/>
+    </svg>
+    <span class="section-glyph-label">Keletkazesh</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">The Faith of <em>Ishwar</em></h2>
+  <p class="lore-body reveal" style="transition-delay:0.1s">Before there was the world, there was a pantheon. And among that pantheon, none held more power than <strong>Ishwar</strong> — master of creation itself. He could raise mountains and carve rivers from the land. He fell in love with <strong>Sol</strong>, goddess of fertility and water, and she with him. The other gods could not bear it.</p>
+  <p class="lore-body reveal" style="transition-delay:0.15s">Led by <strong>Mani</strong> — god of the wind, and Sol's own twin brother — the pantheon conspired. Sol was sealed in a great ball of fire and cast into the sky, beyond Ishwar's reach. When Ishwar learned the truth, he unleashed his power upon himself and became a great whirlpool, absorbing the gods who came against him one by one — until Mani called a cyclone and scattered Ishwar's waters across the world forever. <strong>Ishwar was never the same again.</strong></p>
+  <div class="cosmo-grid reveal" style="transition-delay:0.2s">
+    <div class="cosmo-cell">
+      <p class="cosmo-name">Ishwar</p>
+      <p class="cosmo-role">The Divine Wind &nbsp;·&nbsp; Creator God</p>
+      <p class="cosmo-desc">Scattered across the world as the wind itself. He is everywhere and nowhere. The Kershan believe that when he regains enough of himself, he will walk the earth once more.</p>
+    </div>
+    <div class="cosmo-cell">
+      <p class="cosmo-name">Sol</p>
+      <p class="cosmo-role">The Sun &nbsp;·&nbsp; Goddess of Fertility</p>
+      <p class="cosmo-desc">Sealed in fire and cast into the sky. She searches for a way back to the earth and to Ishwar. Where her light falls, the land grows. Her warmth is not metaphor.</p>
+    </div>
+    <div class="cosmo-cell">
+      <p class="cosmo-name">Mani</p>
+      <p class="cosmo-role">The Moon &nbsp;·&nbsp; God of the Wind</p>
+      <p class="cosmo-desc">He chases his sister across the sky in endless contrition. Where he passes, night falls. The Kershan do not wage war in darkness, nor hold celebrations in it.</p>
+    </div>
+    <div class="cosmo-cell">
+      <p class="cosmo-name">The Koveto</p>
+      <p class="cosmo-role">Children of Ishwar &nbsp;·&nbsp; The Faithful</p>
+      <p class="cosmo-desc">Practitioners of Keletkazesh — the religion of Ishwar. Pilgrims, missionaries, and zealots in equal measure. They can be found in every corner of Estara.</p>
+    </div>
+  </div>
+  <div class="scripture reveal" style="transition-delay:0.28s">
+    All celebrations of the Kershan people are held during the day, where the light of Sol watches over the children of Ishwar.
+    <span class="scripture-attr">— Keletkazesh</span>
+  </div>
+</section>
+ 
+<!-- DEVA -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="10" stroke="#8a6e3e" stroke-width="0.8"/>
+      <circle cx="14" cy="14" r="3" fill="#8a6e3e"/>
+      <line x1="14" y1="4" x2="14" y2="8" stroke="#8a6e3e" stroke-width="1.2"/>
+      <line x1="14" y1="20" x2="14" y2="24" stroke="#8a6e3e" stroke-width="1.2"/>
+      <line x1="4" y1="14" x2="8" y2="14" stroke="#8a6e3e" stroke-width="1.2"/>
+      <line x1="20" y1="14" x2="24" y2="14" stroke="#8a6e3e" stroke-width="1.2"/>
+    </svg>
+    <span class="section-glyph-label">The Chosen</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">The <em>Deva</em></h2>
+  <p class="lore-body reveal" style="transition-delay:0.1s">As Ishwar drifts across the world as the Divine Wind, he releases fragments of his power into the Kershan bloodline — and where that power finds purchase, a <strong>Deva</strong> is born. They are worshipped as the fingers of Ishwar's hand. Deified in life. And the price of being chosen is absolute: <strong>a Deva's children are born barren.</strong> The line ends with them.</p>
+  <p class="lore-body reveal" style="transition-delay:0.15s"><strong>Major Deva</strong> carry great elemental power, considered righteous and beyond question by the faithful. <strong>Minor Deva</strong> hold lesser or more unsettling gifts — mistrusted, yet still revered. Both serve a purpose. The Kershan have never had a Wind Deva. They await one with dread and hope in equal measure.</p>
+  <div class="deva-grid reveal" style="transition-delay:0.2s">
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Fire Deva</p><p class="deva-title">Commands flame. Can cloak themselves in fire, absorb intense heat, and cast great sprays of it. Among the most feared in open battle.</p></div>
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Water Deva</p><p class="deva-title">Commands all moisture. High-pressure torrents, crashing waves, cutting steam. Limited only by what water is near — so they are never far from it.</p></div>
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Lightning Deva</p><p class="deva-title">Calls storms, channels electricity, casts shockwaves. Weather permitting, they can bring lightning from a clear sky.</p></div>
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Ice Deva</p><p class="deva-title">Conjures ice in any form — walls, spikes, beams. A sufficiently powerful Ice Deva can lower the temperature of an entire region.</p></div>
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Beast Deva</p><p class="deva-title">Imposes their will on any creature and commands them absolutely. Almost always accompanied by a familiar. The limits of what they can control are not yet fully understood.</p></div>
+    <div class="deva-card major"><p class="deva-badge">Major Deva</p><p class="deva-name">Swarm Deva</p><p class="deva-title">Becomes the hive mind of any insect they choose — thousands at once. Among the most autonomously powerful of all Deva, and the most difficult to work alongside.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Mirage Deva</p><p class="deva-title">Casts illusions targeting any of the five senses. What cannot harm you is merely the cover. What hides within the illusion is another matter entirely.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Mimic Deva</p><p class="deva-title">Changes physical form. A novice takes another person's face. A master becomes any beast in Estara they have ever encountered.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Desire Deva</p><p class="deva-title">Irresistible to all who lay eyes on them. A song, a dance, a glance — and a victim's will begins to bend. Few who fall under their spell find their way back unassisted.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Bane Deva</p><p class="deva-title">Poisonous blood. Poisonous saliva. Immune to every toxin they have ever encountered. They can detect poison in food or drink at a glance.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Renewal Deva</p><p class="deva-title">Regrows lost limbs. Heals themselves of almost anything. Does not age in any ordinary sense. Their one true vulnerability is known, and closely guarded.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Healing Deva</p><p class="deva-title">Heals the wounds of others — broken bones, bleeding, sickness. Cannot regrow limbs. Cannot save a person who has already given up.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Brawn Deva</p><p class="deva-title">Five to seven times stronger than any ordinary person. More intelligent than most would guess — and they resent being underestimated for it.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Fleetfoot Deva</p><p class="deva-title">Faster than a horse at full gallop. Tremendous stamina. A terrifying knife fighter. Also possessed of an enormous appetite.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Flight Deva</p><p class="deva-title">Takes to the sky. Used as scouts and builders alike. Known to shirk responsibility in favour of their own wandering. The sky, they will tell you, belongs to no one.</p></div>
+    <div class="deva-card minor"><p class="deva-badge">Minor Deva</p><p class="deva-name">Patthar Deva</p><p class="deva-title">Stone-like skin. Resistant to most elemental attacks. The vanguard of military campaigns. Formidably strong — and notably, almost comically, terrible swimmers.</p></div>
+  </div>
+</section>
+ 
+<!-- PROPHECY BAND -->
+<div class="prophecy-band">
+  <div class="prophecy-inner">
+    <p class="prophecy-label">The Prophecy of the Koveto</p>
+    <p class="prophecy-text">When a Deva of <em>Wind</em> walks the earth, Ishwar will have the power to return to flesh. The children of Ishwar will march on Tirtha. The world will know unending peace.</p>
+    <p class="prophecy-source">Keletkazesh &nbsp;·&nbsp; The Religion of the Kershan People</p>
+  </div>
+</div>
+ 
+<!-- LANDS -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <rect x="4" y="4" width="20" height="20" rx="1" stroke="#8a6e3e" stroke-width="0.8"/>
+      <line x1="4" y1="14" x2="24" y2="14" stroke="#8a6e3e" stroke-width="0.5"/>
+      <line x1="14" y1="4" x2="14" y2="24" stroke="#8a6e3e" stroke-width="0.5"/>
+    </svg>
+    <span class="section-glyph-label">The Continent</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">The Lands of <em>Estara</em></h2>
+  <div class="lands-list reveal" style="transition-delay:0.1s">
+    <div class="land-item">
+      <div class="land-name-col"><p class="land-name">Kisirakar</p><p class="land-alt">The Kershan Empire · East</p></div>
+      <div class="land-body-col"><p class="land-desc">Harsh, arid, vast. A land of spice and silk where the sun is merciless and the people harder still. Only recently unified from warring kingdoms into a single empire — the largest nation on the continent. Its rulers wield elemental power. Its people are deeply, fervently faithful. They believe their god walks among them as the wind.</p></div>
+    </div>
+    <div class="land-item">
+      <div class="land-name-col"><p class="land-name">Otthon</p><p class="land-alt">The Hinterlands · North</p></div>
+      <div class="land-body-col"><p class="land-desc">Cold, densely forested, ancient. The oldest land on the continent. Strange creatures move in its deeper woods, and stranger things still are said to live at its heart. The Hinterfolk are tall, pale, and hard — shaped by a way of life older than any kingdom. Something in these woods holds the history of the world. It does not share it freely.</p></div>
+    </div>
+    <div class="land-item">
+      <div class="land-name-col"><p class="land-name">Karland</p><p class="land-alt">The True Kingdom · South</p></div>
+      <div class="land-body-col"><p class="land-desc">The first proper kingdom and still the heart of the continent. Its royal family has been absent for sixteen years. No one has filled the throne. The noble families hold the country together in their own fashion — which is to say, they argue over it constantly. Its capital, Tamlith, is home to the greatest institution of learning on the continent, and to secrets that certain people would kill to protect.</p></div>
+    </div>
+    <div class="land-item">
+      <div class="land-name-col"><p class="land-name">Sonnareth</p><p class="land-alt">The Sommerset Lands · West</p></div>
+      <div class="land-body-col"><p class="land-desc">A land of peace, rich coastal plains, and open trade. Sommerset feeds much of the continent. It has no standing army and makes no apologies for it. The Awari people are careful, prosperous, and neutral — a combination that has served them very well. How long it continues to do so is another question.</p></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- THE COLLEGE -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <rect x="6" y="12" width="16" height="12" stroke="#8a6e3e" stroke-width="0.8"/>
+      <polyline points="4,12 14,4 24,12" stroke="#8a6e3e" stroke-width="0.8" fill="none"/>
+      <line x1="11" y1="24" x2="11" y2="17" stroke="#8a6e3e" stroke-width="0.7"/>
+      <line x1="17" y1="24" x2="17" y2="17" stroke="#8a6e3e" stroke-width="0.7"/>
+    </svg>
+    <span class="section-glyph-label">Tamlith, Karland</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">Wissen Shiki<br><em>College</em></h2>
+  <p class="lore-body reveal" style="transition-delay:0.1s">Six hundred years old and still the most important building in Karland. Wissen Shiki stands in Tamlith at the edge of Lunar Bay — three great towers rising above the city skyline: the White Tower, the Black Tower, and between them the High Tower, climbing higher than anything else in sight. Inside: brass pipework and copper ceilings, steam-powered lights, boilers hidden behind the walls. A place of genuine wonder, and of carefully curated knowledge.</p>
+  <p class="lore-body reveal" style="transition-delay:0.15s">Students come from across the continent to study metallurgy, alchemy, mathematics, geology, electromagnetism, and a dozen other disciplines. Progress is measured in metals — ten levels, Bismuth to Gold. The path from first year to Journeyman Artificer takes a decade, following the traditional route. The brilliant, the impatient, and the brave find other ways.</p>
+  <div class="metal-strip reveal" style="transition-delay:0.2s">
+    <span class="metal-pip">Bismuth</span><span class="metal-pip">Zinc</span><span class="metal-pip">Tin</span><span class="metal-pip">Aluminium</span><span class="metal-pip">Lead</span><span class="metal-pip">Iron</span><span class="metal-pip">Copper</span><span class="metal-pip bronze-pip">Bronze</span><span class="metal-pip silver-pip">Silver</span><span class="metal-pip gold-pip">Gold</span>
+  </div>
+  <div class="college-features reveal" style="transition-delay:0.25s">
+    <div class="college-cell">
+      <p class="college-cell-label">The Challenge System</p>
+      <p class="college-cell-title">Prove You Know It</p>
+      <p class="college-cell-desc">A student who believes they already hold the knowledge of the next metal level may challenge it — facing a peer who already holds that rank in a live demonstration of skill. Pass, and you advance. Fail, and you wait. A decade can become five years for those willing to work for it.</p>
+    </div>
+    <div class="college-cell">
+      <p class="college-cell-label">Critical Engagements</p>
+      <p class="college-cell-title">The Unlisted Class</p>
+      <p class="college-cell-desc">No metal ranking. No formal syllabus. Required for the entire duration of a student's time at the college. It covers the application of knowledge under pressure — against opponents who are trying to stop you. It is taught by one professor, in one room, with no official record of what happens inside it.</p>
+    </div>
+    <div class="college-cell">
+      <p class="college-cell-label">The Noble Families</p>
+      <p class="college-cell-title">Old Blood, Old Debts</p>
+      <p class="college-cell-desc">The Blacktowers, Whitetowers, and Hightowers helped build this college. They have never stopped profiting from it. The dean is a Blacktower. Half of Tamlith owes the Hightowers money. The Moonstones control trade. Behind all of it, a vacant throne that no one has been able to claim for sixteen years.</p>
+    </div>
+    <div class="college-cell">
+      <p class="college-cell-label">The Eastern Library</p>
+      <p class="college-cell-title">The No Access Zone</p>
+      <p class="college-cell-desc">Most of the college is open to students. Most of it. There is a section of the eastern library that requires special authorisation. Students have been expelled for entering it. What the college does not want its students to find may be the most important thing in the building.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- BEASTS -->
+<section class="lore-section">
+  <div class="section-glyph reveal">
+    <svg class="section-glyph-symbol" viewBox="0 0 28 28" fill="none">
+      <path d="M14 4 C6 8, 4 14, 8 20 C10 24, 18 24, 20 20 C24 14, 22 8, 14 4Z" stroke="#8a6e3e" stroke-width="0.8" fill="none"/>
+      <circle cx="10" cy="13" r="1.5" fill="#8a6e3e"/><circle cx="18" cy="13" r="1.5" fill="#8a6e3e"/>
+    </svg>
+    <span class="section-glyph-label">Creatures of Estara</span>
+    <div class="section-glyph-line"></div>
+  </div>
+  <h2 class="lore-heading reveal">Beasts of <em>the World</em></h2>
+  <p class="lore-body reveal" style="transition-delay:0.1s">Estara is not a tame world. Its creatures are old — some older than memory — and many carry a connection to the Source that no human practitioner has fully understood. A few are considered sacred. Most are simply dangerous. Some are both.</p>
+  <div class="beasts-grid reveal" style="transition-delay:0.15s">
+    <div class="beast-card"><p class="beast-name">Szarvas</p><p class="beast-origin">Hinterlands &nbsp;·&nbsp; Singular</p><p class="beast-desc">The great deer of the wood. A singular creature. Life is said to flourish wherever it passes. The Hinterfolk and the Vorsa protect it absolutely, and do not explain why.</p></div>
+    <div class="beast-card"><p class="beast-name">Sarkany</p><p class="beast-origin">Estara &nbsp;·&nbsp; Two Kinds</p><p class="beast-desc">Elemental dragons with the deepest natural Source connection of any living creature. And the great multi-headed breed — no Source, more heads, considerably more intelligent. The older ones speak.</p></div>
+    <div class="beast-card"><p class="beast-name">Toll Wulf</p><p class="beast-origin">Hinterlands &nbsp;·&nbsp; Solitary</p><p class="beast-desc">A great wolf that hunts alone. Far larger than any natural wolf. Connected to the Source through the Earth element. Its pelt is valuable for reasons beyond warmth.</p></div>
+    <div class="beast-card"><p class="beast-name">Kurma</p><p class="beast-origin">Eastern Coast &nbsp;·&nbsp; Ancient</p><p class="beast-desc">A great turtle living off the Hinterlands coast. Very old. Very patient. Pilgrims have traveled great distances to sit at its feet and ask their questions. It answers some of them.</p></div>
+    <div class="beast-card"><p class="beast-name">Turul</p><p class="beast-origin">Estara &nbsp;·&nbsp; Rare</p><p class="beast-desc">A giant eagle of legendary bearing. Sighting one is considered seven years of good fortune. They do not acknowledge this. They do not acknowledge men at all, generally.</p></div>
+    <div class="beast-card"><p class="beast-name">Vorsa</p><p class="beast-origin">Hinterlands &nbsp;·&nbsp; Ancient Race</p><p class="beast-desc">Spirits of the forest. Bark-skinned, moss-haired, peaceful — until the forest is threatened. One of the oldest races in the world. Possibly older than anything that walked upright before them.</p></div>
+    <div class="beast-card"><p class="beast-name">Tengu</p><p class="beast-origin">Mountains &nbsp;·&nbsp; Neutral</p><p class="beast-desc">Crow-headed humanoids. Masterful blacksmiths and sword fighters. They will not fight you without reason. They are fond of riddles. Give them a bad one at your own risk.</p></div>
+    <div class="beast-card"><p class="beast-name">Yali</p><p class="beast-origin">Kershan &nbsp;·&nbsp; Apex</p><p class="beast-desc">Tiger's body. Elephant's tusks. Serpentine scales. The most feared land predator in Kisirakar — which is saying a great deal, given the competition.</p></div>
+    <div class="beast-card"><p class="beast-name">Shadhavar</p><p class="beast-origin">Kershan &nbsp;·&nbsp; Sacred</p><p class="beast-desc">A one-horned creature whose perforated horn sings with the wind — joyous or melancholy depending on the direction of the breeze. Sacred. Also hunted. Its horn becomes an heirloom.</p></div>
+    <div class="beast-card"><p class="beast-name">Gorebeast</p><p class="beast-origin">Estara &nbsp;·&nbsp; Prized</p><p class="beast-desc">A mare with a curved horn — or two. The stallions have no horns and are far more docile. The females are connected to the Source through the Wind element, and their ivory horns are among the finest Source amplifiers known. They are considered prize game wherever they are found.</p></div>
+    <div class="beast-card"><p class="beast-name">Wolpertinger</p><p class="beast-origin">Estara &nbsp;·&nbsp; Elusive</p><p class="beast-desc">A rabbit with the wings of a bird and the antlers of a deer. Its feet are considered a lucky talisman — rare enough that most people selling rabbit feet as wolpertinger feet are lying, and know it.</p></div>
+    <div class="beast-card"><p class="beast-name">Basan</p><p class="beast-origin">Estara &nbsp;·&nbsp; Sacred in some lands</p><p class="beast-desc">A large bird of brilliant plumage that breathes ghostfire — flame that holds no heat and burns nothing. Considered sacred in certain regions. Garb made from its feathers carries a faint connection to the Source through the Flame element.</p></div>
+    <div class="beast-card"><p class="beast-name">Kappa</p><p class="beast-origin">Wetlands &nbsp;·&nbsp; Hostile</p><p class="beast-desc">A water creature with a turtle's shell and a bowl of water set into the top of its head. It lives in bogs, under bridges, and wherever shallow water gathers — and it tries to drown whatever it finds. The bowl is its only weakness. Spill it, and the matter is resolved.</p></div>
+    <div class="beast-card"><p class="beast-name">Oni</p><p class="beast-origin">Estara &nbsp;·&nbsp; Dangerous</p><p class="beast-desc">Great ogre-like creatures with horns and sharp teeth, found in small groups. Intelligent enough to speak and use the Source in rudimentary ways. They do not build, and they hold an intense and abiding malice toward humans.</p></div>
+    <div class="beast-card"><p class="beast-name">Jorogumo</p><p class="beast-origin">Estara &nbsp;·&nbsp; Predatory</p><p class="beast-desc">Giant spiders with the face of a beautiful woman on their back. The oldest and most powerful among them can speak, and temporarily take a woman's form. They hunt people exclusively when they can. The face, witnesses report, is always smiling.</p></div>
+    <div class="beast-card"><p class="beast-name">Kitsune</p><p class="beast-origin">Estara &nbsp;·&nbsp; Clever</p><p class="beast-desc">Shape-shifting foxes. They cannot become people, but can turn into flame, other animals, or inanimate objects. Small, clever, and generally well-liked by common folk. Some have been caught and kept as pets — which the kitsune invariably find more amusing than their owners do.</p></div>
+    <div class="beast-card"><p class="beast-name">Nue</p><p class="beast-origin">Estara &nbsp;·&nbsp; Ill Omen</p><p class="beast-desc">The head of a monkey on the body of a tiger, with some sporting wings. Encountering one is considered seven years of bad fortune — the precise inverse of the Turul. Its cry is horrible to hear. It would prefer to be left alone. It rarely is.</p></div>
+    <div class="beast-card"><p class="beast-name">Manok</p><p class="beast-origin">Estara &nbsp;·&nbsp; Widespread</p><p class="beast-desc">Goblins found across the whole continent, from the coldest reaches of the Hinterlands to the scorched south. Nuisances alone, genuinely dangerous in numbers. None of them ever grow larger than a ten-year-old child, which people tend to forget until it is too late.</p></div>
+    <div class="beast-card"><p class="beast-name">Naga</p><p class="beast-origin">Sommerset &amp; Kershan &nbsp;·&nbsp; Giant</p><p class="beast-desc">Giant snakes, though the two varieties are quite different. The Kershan Naga resembles a great king cobra. The western Sommerset variety is built for both land and water, and looks more like something dredged up from the deep sea.</p></div>
+    <div class="beast-card"><p class="beast-name">Raki</p><p class="beast-origin">Helfort &nbsp;·&nbsp; Venomous</p><p class="beast-desc">Scorpions native to the scorched wastes, no larger than a dog and considerably more lethal. Extremely poisonous. Extremely hostile. Water is noxious to them — the one mercy the desert does not often provide.</p></div>
+    <div class="beast-card"><p class="beast-name">Aleya</p><p class="beast-origin">Kershan &nbsp;·&nbsp; Ghostly</p><p class="beast-desc">Pale blue orbs of light that drift through the desert wastes of Kisirakar, hovering just above the sand. They do not attack. They do not follow. They simply drift — and those who follow them too long are said to lose their way between the world of the living and whatever lies beyond it.</p></div>
+    <div class="beast-card"><p class="beast-name">Vetala</p><p class="beast-origin">Kershan &nbsp;·&nbsp; Unnatural</p><p class="beast-desc">Something is wrong with them before you see them. The cold reaches you first — then the smell. They move. They remember, after a fashion. But whatever they were in life has long since departed, and what remains wears the shape of it like borrowed clothes.</p></div>
+  </div>
+</section>
+ 
+<footer>
+  <p class="footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="works.html">Works</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
+ 
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
