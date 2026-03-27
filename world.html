@@ -282,17 +282,6 @@
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 800px) {
-    nav { padding: 1.1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    .lore-section { padding: 4rem 1.5rem; }
-    .cosmo-grid, .college-features { grid-template-columns: 1fr; }
-    .land-item { grid-template-columns: 1fr; }
-    .land-name-col { border-right: none; border-bottom: 1px solid var(--border); }
-    .source-visual { flex-direction: column; text-align: center; }
-    footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
-  }
-
   /* ── HAMBURGER NAV ── */
   .nav-hamburger {
     display: none;
@@ -351,21 +340,37 @@
   .site-footer-copy-links a { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,223,200,0.3); text-decoration: none; transition: color 0.2s; }
   .site-footer-copy-links a:hover { color: rgba(232,223,200,0.7); }
 
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.25rem !important; }
     .nav-hamburger { display: flex !important; }
+    .nav-hamburger span { background: var(--cream) !important; }
     .nav-links {
       display: none !important;
       position: fixed !important;
-      top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-      background: rgba(13,11,9,0.99) !important;
+      top: 57px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: auto !important;
+      background: rgba(13,11,9,0.98) !important;
       flex-direction: column !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 2.5rem !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      gap: 0 !important;
       z-index: 150 !important;
+      border-top: 1px solid rgba(184,150,90,0.2) !important;
+      padding: 0.5rem 0 1rem !important;
     }
-    .nav-links a { font-size: 1.1rem !important; letter-spacing: 0.15em !important; color: var(--gold) !important; }
+    .nav-links.open { display: flex !important; }
+    .nav-links li { width: 100% !important; }
+    .nav-links a {
+      font-size: 0.8rem !important;
+      letter-spacing: 0.18em !important;
+      padding: 0.75rem 1.5rem !important;
+      display: block !important;
+      width: 100% !important;
+      color: var(--cream-dim) !important;
+    }
     .site-footer-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
     .site-footer-inner { padding: 3rem 1.25rem 2rem !important; }
     .site-footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: 0.8rem !important; }
@@ -669,7 +674,7 @@
       </div>
       <div>
         <p class="site-footer-col-label" style="color:rgba(184,150,90,0.5);">Follow</p>
-        <a href="https://instagram.com/kalijohnseamark" target="_blank" rel="noopener" class="site-footer-social-link" style="color:rgba(168,152,120,0.6);">
+        <a href="https://instagram.com/kali_john98" target="_blank" rel="noopener" class="site-footer-social-link" style="color:rgba(168,152,120,0.6);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           Instagram
         </a>
