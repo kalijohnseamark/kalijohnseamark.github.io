@@ -21,11 +21,11 @@
     --text-muted: #6b5f50;
     --text-faint: #9e9080;
   }
- 
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     background-color: var(--cream);
     color: var(--text-body);
@@ -36,7 +36,7 @@
     position: relative;
     overflow-x: hidden;
   }
- 
+
   /* Subtle paper grain texture overlay */
   body::before {
     content: '';
@@ -48,7 +48,7 @@
     z-index: 0;
     opacity: 0.6;
   }
- 
+
   /* ── NAV ── */
   nav {
     position: fixed;
@@ -63,12 +63,12 @@
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s, background 0.3s;
   }
- 
+
   nav.scrolled {
     border-bottom-color: var(--cream-deep);
     background: rgba(245,240,232,0.97);
   }
- 
+
   .nav-name {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 1.15rem;
@@ -78,13 +78,13 @@
     text-decoration: none;
     text-transform: uppercase;
   }
- 
+
   .nav-links {
     display: flex;
     gap: 2.5rem;
     list-style: none;
   }
- 
+
   .nav-links a {
     font-family: 'Raleway', sans-serif;
     font-size: 0.72rem;
@@ -96,7 +96,7 @@
     transition: color 0.2s;
     position: relative;
   }
- 
+
   .nav-links a::after {
     content: '';
     position: absolute;
@@ -105,11 +105,11 @@
     background: var(--gold);
     transition: right 0.3s ease;
   }
- 
+
   .nav-links a:hover { color: var(--ink); }
   .nav-links a:hover::after { right: 0; }
   .nav-links a.active { color: var(--gold-muted); }
- 
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -122,7 +122,7 @@
     max-width: 1100px;
     margin: 0 auto;
   }
- 
+
   .hero-ornament {
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.8rem;
@@ -133,7 +133,7 @@
     opacity: 0;
     animation: fadeUp 0.8s ease 0.2s forwards;
   }
- 
+
   .hero-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: clamp(4.5rem, 11vw, 9rem);
@@ -144,12 +144,12 @@
     opacity: 0;
     animation: fadeUp 0.9s ease 0.4s forwards;
   }
- 
+
   .hero-title em {
     font-style: italic;
     color: var(--gold-muted);
   }
- 
+
   .hero-divider {
     width: 60px;
     height: 1px;
@@ -158,7 +158,7 @@
     opacity: 0;
     animation: fadeUp 0.9s ease 0.6s forwards;
   }
- 
+
   .hero-sub {
     font-family: 'Raleway', sans-serif;
     font-size: 0.78rem;
@@ -170,7 +170,7 @@
     opacity: 0;
     animation: fadeUp 0.9s ease 0.65s forwards;
   }
- 
+
   .hero-tagline {
     font-family: 'Crimson Pro', serif;
     font-size: clamp(1.15rem, 2.2vw, 1.45rem);
@@ -182,7 +182,7 @@
     opacity: 0;
     animation: fadeUp 0.9s ease 0.75s forwards;
   }
- 
+
   .hero-cta {
     margin-top: 3rem;
     display: inline-flex;
@@ -201,19 +201,19 @@
     opacity: 0;
     animation: fadeUp 0.9s ease 0.9s forwards;
   }
- 
+
   .hero-cta:hover {
     background: var(--gold);
     color: var(--cream);
   }
- 
+
   .hero-cta-arrow {
     font-size: 1rem;
     transition: transform 0.25s;
   }
- 
+
   .hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
- 
+
   /* Decorative large background letter */
   .hero-bg-letter {
     position: absolute;
@@ -232,7 +232,7 @@
     opacity: 0;
     animation: fadeIn 1.4s ease 0.5s forwards;
   }
- 
+
   /* ── SECTION: ABOUT TEASER ── */
   .section-teaser {
     max-width: 1100px;
@@ -246,7 +246,7 @@
     position: relative;
     z-index: 1;
   }
- 
+
   .section-label {
     font-family: 'Raleway', sans-serif;
     font-size: 0.68rem;
@@ -256,7 +256,7 @@
     color: var(--gold);
     margin-bottom: 1.5rem;
   }
- 
+
   .section-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -265,16 +265,16 @@
     color: var(--ink);
     margin-bottom: 1.5rem;
   }
- 
+
   .section-heading em { font-style: italic; color: var(--gold-muted); }
- 
+
   .section-body {
     font-size: 1.08rem;
     line-height: 1.8;
     color: var(--text-body);
     margin-bottom: 2rem;
   }
- 
+
   .text-link {
     font-family: 'Raleway', sans-serif;
     font-size: 0.7rem;
@@ -287,16 +287,16 @@
     padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
   }
- 
+
   .text-link:hover { color: var(--ink); border-color: var(--ink); }
- 
+
   /* Works teaser cards */
   .teaser-cards {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
- 
+
   .teaser-card {
     padding: 1.6rem 1.8rem;
     border: 1px solid var(--cream-deep);
@@ -304,13 +304,13 @@
     background: rgba(255,255,255,0.35);
     transition: border-color 0.25s, background 0.25s;
   }
- 
+
   .teaser-card:hover {
     border-color: var(--gold);
     border-left-color: var(--gold-muted);
     background: rgba(255,255,255,0.65);
   }
- 
+
   .teaser-card-label {
     font-family: 'Raleway', sans-serif;
     font-size: 0.63rem;
@@ -319,7 +319,7 @@
     color: var(--gold);
     margin-bottom: 0.4rem;
   }
- 
+
   .teaser-card-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.35rem;
@@ -328,13 +328,13 @@
     color: var(--ink);
     margin-bottom: 0.4rem;
   }
- 
+
   .teaser-card-desc {
     font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.6;
   }
- 
+
   /* ── QUOTE BAND ── */
   .quote-band {
     background: var(--ink);
@@ -343,7 +343,7 @@
     z-index: 1;
     overflow: hidden;
   }
- 
+
   .quote-band::before {
     content: '\201C';
     position: absolute;
@@ -355,13 +355,13 @@
     line-height: 1;
     pointer-events: none;
   }
- 
+
   .quote-inner {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
- 
+
   .quote-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.6rem, 3vw, 2.4rem);
@@ -371,7 +371,7 @@
     line-height: 1.55;
     margin-bottom: 2rem;
   }
- 
+
   .quote-attr {
     font-family: 'Raleway', sans-serif;
     font-size: 0.7rem;
@@ -379,7 +379,7 @@
     text-transform: uppercase;
     color: var(--gold);
   }
- 
+
   /* ── FOOTER ── */
   footer {
     max-width: 1100px;
@@ -392,20 +392,20 @@
     position: relative;
     z-index: 1;
   }
- 
+
   .footer-copy {
     font-family: 'Raleway', sans-serif;
     font-size: 0.68rem;
     letter-spacing: 0.15em;
     color: var(--text-faint);
   }
- 
+
   .footer-links {
     display: flex;
     gap: 2rem;
     list-style: none;
   }
- 
+
   .footer-links a {
     font-family: 'Raleway', sans-serif;
     font-size: 0.68rem;
@@ -415,31 +415,31 @@
     text-decoration: none;
     transition: color 0.2s;
   }
- 
+
   .footer-links a:hover { color: var(--gold-muted); }
- 
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(22px); }
     to { opacity: 1; transform: translateY(0); }
   }
- 
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
- 
+
   .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
- 
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
- 
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; }
@@ -449,13 +449,96 @@
     .section-teaser { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
     footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 1.5rem; }
   }
+
+  /* ── HAMBURGER NAV ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── SITE FOOTER ── */
+  .site-footer { background: #1a1714; position: relative; z-index: 1; }
+  .site-footer-inner { max-width: 1100px; margin: 0 auto; padding: 4rem 3rem 3rem; }
+  .site-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .site-footer-col-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(184,150,90,0.7);
+    margin-bottom: 1.2rem;
+  }
+  .site-footer-nav { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .site-footer-nav a { font-family: 'Crimson Pro', serif; font-size: 1rem; color: rgba(232,223,200,0.6); text-decoration: none; transition: color 0.2s; }
+  .site-footer-nav a:hover { color: rgba(232,223,200,1); }
+  .site-footer-social-link { display: flex; align-items: center; gap: 0.7rem; font-family: 'Crimson Pro', serif; font-size: 1rem; color: rgba(232,223,200,0.6); text-decoration: none; transition: color 0.2s; }
+  .site-footer-social-link:hover { color: rgba(232,223,200,1); }
+  .site-footer-newsletter-desc { font-family: 'Crimson Pro', serif; font-size: 0.92rem; font-style: italic; color: rgba(232,223,200,0.45); line-height: 1.6; margin-bottom: 0.8rem; }
+  .site-footer-input-row { display: flex; }
+  .site-footer-email-input { flex: 1; min-width: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(184,150,90,0.25); border-right: none; padding: 0.7rem 0.8rem; font-family: 'Crimson Pro', serif; font-size: 0.95rem; color: #e8dfc8; outline: none; border-radius: 0; }
+  .site-footer-email-input::placeholder { color: rgba(232,223,200,0.3); font-style: italic; }
+  .site-footer-subscribe-btn { background: #8a6e3e; border: 1px solid #8a6e3e; padding: 0.7rem 1rem; font-family: 'Raleway', sans-serif; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #f5f0e8; cursor: pointer; border-radius: 0; white-space: nowrap; transition: background 0.2s; }
+  .site-footer-subscribe-btn:hover { background: #b8965a; }
+  .site-footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .site-footer-copy { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(232,223,200,0.3); }
+  .site-footer-copy-links { display: flex; gap: 1.5rem; list-style: none; }
+  .site-footer-copy-links a { font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,223,200,0.3); text-decoration: none; transition: color 0.2s; }
+  .site-footer-copy-links a:hover { color: rgba(232,223,200,0.7); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem !important; }
+    .nav-hamburger { display: flex !important; }
+    .nav-links {
+      display: none !important;
+      position: fixed !important;
+      top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+      background: rgba(245,240,232,0.99) !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 2.5rem !important;
+      z-index: 150 !important;
+    }
+    .nav-links.open { display: flex !important; }
+    .nav-links a { font-size: 1.1rem !important; letter-spacing: 0.15em !important; }
+    .site-footer-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    .site-footer-inner { padding: 3rem 1.25rem 2rem !important; }
+    .site-footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: 0.8rem !important; }
+  }
+
 </style>
 </head>
 <body>
- 
+
 <nav id="mainNav">
   <a href="index.html" class="nav-name">Kali John Seamark</a>
-  <ul class="nav-links">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="works.html">Works</a></li>
@@ -463,7 +546,7 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
- 
+
 <main>
   <section class="hero">
     <div class="hero-bg-letter" aria-hidden="true">K</div>
@@ -474,7 +557,7 @@
     <p class="hero-tagline">Stories drawn from the grit of working-class life, woven through with myth, spirituality, and the search for truth.</p>
     <a href="works.html" class="hero-cta">Explore Works <span class="hero-cta-arrow">→</span></a>
   </section>
- 
+
   <section class="section-teaser">
     <div class="reveal">
       <p class="section-label">The Author</p>
@@ -488,7 +571,7 @@
       <div class="teaser-card">
         <p class="teaser-card-label">Novel &mdash; In Progress</p>
         <p class="teaser-card-title">Debut Novel</p>
-        <p class="teaser-card-desc">An epic fantasy exploring culture, spirituality, and the pursuit of objective truth across three unique civilisations.</p>
+        <p class="teaser-card-desc">An epic fantasy exploring culture, spirituality, and the pursuit of objective truth across three unique civilizations.</p>
       </div>
       <div class="teaser-card">
         <p class="teaser-card-label">Short Fiction</p>
@@ -497,7 +580,7 @@
       </div>
     </div>
   </section>
- 
+
   <div class="quote-band">
     <div class="quote-inner">
       <p class="quote-text">"Stories drawn from the grit and complexity of working-class experience, weaving realism and myth into contemporary literature."</p>
@@ -505,53 +588,53 @@
     </div>
   </div>
 </main>
- 
-<footer style="background:#1a1714; position:relative; z-index:1;">
-  <div style="max-width:1100px; margin:0 auto; padding:4rem 3rem 3rem;">
-    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:3rem; padding-bottom:3rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:2rem;">
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
       <div>
-        <p style="font-family:'Raleway',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:rgba(184,150,90,0.7); margin-bottom:1.2rem;">Navigate</p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem;">
-          <li><a href="index.html" style="font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">Home</a></li>
-          <li><a href="about.html" style="font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">About</a></li>
-          <li><a href="works.html" style="font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">Works</a></li>
-          <li><a href="world.html" style="font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">The World</a></li>
-          <li><a href="contact.html" style="font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">Contact</a></li>
+        <p class="site-footer-col-label">Navigate</p>
+        <ul class="site-footer-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="works.html">Works</a></li>
+          <li><a href="world.html">The World</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div>
-        <p style="font-family:'Raleway',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:rgba(184,150,90,0.7); margin-bottom:1.2rem;">Follow</p>
-        <a href="https://instagram.com/kali_john98" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:0.7rem; font-family:'Crimson Pro',serif; font-size:1rem; color:rgba(232,223,200,0.6); text-decoration:none;">
+        <p class="site-footer-col-label">Follow</p>
+        <a href="https://instagram.com/kalijohnseamark" target="_blank" rel="noopener" class="site-footer-social-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           Instagram
         </a>
       </div>
       <div>
-        <p style="font-family:'Raleway',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:rgba(184,150,90,0.7); margin-bottom:1.2rem;">Stay Updated</p>
-        <p style="font-family:'Crimson Pro',serif; font-size:0.92rem; font-style:italic; color:rgba(232,223,200,0.45); line-height:1.6; margin-bottom:0.8rem;">New publications, releases, and dispatches from the world of Estara.</p>
-        <div style="display:flex;">
-          <input type="email" placeholder="your@email.com" aria-label="Email address" style="flex:1; background:rgba(255,255,255,0.06); border:1px solid rgba(184,150,90,0.25); border-right:none; padding:0.7rem 1rem; font-family:'Crimson Pro',serif; font-size:0.95rem; color:#e8dfc8; outline:none; border-radius:0;">
-          <button type="button" style="background:#8a6e3e; border:1px solid #8a6e3e; padding:0.7rem 1.1rem; font-family:'Raleway',sans-serif; font-size:0.6rem; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#f5f0e8; cursor:pointer; border-radius:0; white-space:nowrap;">Subscribe</button>
+        <p class="site-footer-col-label">Stay Updated</p>
+        <p class="site-footer-newsletter-desc">New publications, releases, and dispatches from the world of Estara.</p>
+        <div class="site-footer-input-row">
+          <input type="email" class="site-footer-email-input" placeholder="your@email.com" aria-label="Email address">
+          <button type="button" class="site-footer-subscribe-btn">Subscribe</button>
         </div>
       </div>
     </div>
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-      <p style="font-family:'Raleway',sans-serif; font-size:0.65rem; letter-spacing:0.15em; color:rgba(232,223,200,0.3);">&copy; 2025 Kali John Seamark. All rights reserved.</p>
-      <ul style="display:flex; gap:1.5rem; list-style:none;">
-        <li><a href="about.html" style="font-family:'Raleway',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(232,223,200,0.3); text-decoration:none;">About</a></li>
-        <li><a href="works.html" style="font-family:'Raleway',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(232,223,200,0.3); text-decoration:none;">Works</a></li>
-        <li><a href="contact.html" style="font-family:'Raleway',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(232,223,200,0.3); text-decoration:none;">Contact</a></li>
+    <div class="site-footer-bottom">
+      <p class="site-footer-copy">&copy; 2025 Kali John Seamark. All rights reserved.</p>
+      <ul class="site-footer-copy-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="works.html">Works</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
 </footer>
- 
+
 <script>
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
- 
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
